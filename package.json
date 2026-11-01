@@ -1,0 +1,53 @@
+{
+  "name": "agent-flightrec",
+  "version": "0.1.0",
+  "description": "A flight recorder for AI coding agents: replay any Claude Code, Codex or Gemini CLI session on a timeline and see what it did, what it cost, which limits it hit and where it went wrong. Local-only, zero dependencies.",
+  "type": "module",
+  "bin": {
+    "flightrec": "dist/src/cli.js"
+  },
+  "files": [
+    "dist/src",
+    "web",
+    "fixtures/demo"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "tsc",
+    "demo": "npm run build && node dist/src/cli.js --demo",
+    "demo:data": "node scripts/make-demo.mjs",
+    "demo:page": "npm run build && node dist/src/cli.js export latest --demo -o docs/demo.html",
+    "test": "tsc && node --test \"dist/test/*.test.js\"",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "claude-code",
+    "codex",
+    "gemini-cli",
+    "rate-limit",
+    "observability",
+    "replay",
+    "debugger",
+    "timeline",
+    "llm",
+    "token-usage",
+    "cost",
+    "cli"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kenan0z/agent-flight-recorder.git"
+  },
+  "homepage": "https://github.com/Kenan0z/agent-flight-recorder#readme",
+  "bugs": "https://github.com/Kenan0z/agent-flight-recorder/issues",
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  }
+}

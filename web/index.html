@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src data:">
+<title>Flight Recorder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <a id="home" class="brand" href="#"><span class="brand-mark" aria-hidden="true"></span>Flight Recorder</a>
+    <label id="redact-toggle" title="Masks passwords, keys, emails and your user name on this screen"><input id="redact" type="checkbox" checked> Hide private info</label>
+  </header>
+  <main id="main">
+    <div id="empty" hidden></div>
+    <div id="overview" hidden></div>
+    <div id="workspace" hidden>
+      <header id="head">
+        <div class="head-top">
+          <a id="back" href="#">← All sessions</a>
+          <button id="detail-toggle" type="button"></button>
+        </div>
+        <h1 id="title"></h1>
+        <p id="verdict"></p>
+        <p id="subtitle"></p>
+        <div id="kpis"></div>
+      </header>
+      <section id="chart-panel" aria-label="Session timeline">
+        <div id="transport">
+          <button id="play" type="button" title="Play or pause (Space)"></button>
+          <button id="prev" type="button" title="Previous step (←)" aria-label="Previous step">‹</button>
+          <button id="next" type="button" title="Next step (→)" aria-label="Next step">›</button>
+          <select id="speed" aria-label="Playback speed">
+            <option value="1">1×</option><option value="2">2×</option><option value="4">4×</option><option value="8">8×</option>
+          </select>
+          <button id="next-error" type="button" title="Jump to the next failed action (E)">Next failure</button>
+          <button id="zoom-reset" class="detail-only" type="button" title="Show the whole session (0)">Fit</button>
+          <div id="readout"></div>
+        </div>
+        <div id="chart-wrap">
+          <canvas id="chart" tabindex="0" role="img" aria-label="Timeline of what the agent did. Use the arrow keys to move between steps."></canvas>
+        </div>
+      </section>
+      <div id="lower">
+        <section id="insights" aria-label="Summary">
+          <div class="tabs" role="tablist"></div>
+          <div id="tab-body"></div>
+        </section>
+        <section id="log" class="detail-only" aria-label="All steps">
+          <div class="log-tools">
+            <input id="log-search" type="search" placeholder="Search steps (/)" aria-label="Search steps">
+            <select id="lane-filter" aria-label="Filter by type"></select>
+            <label><input id="errors-only" type="checkbox"> Failed</label>
+          </div>
+          <div id="log-scroll" tabindex="0"><div id="log-spacer"><div id="log-rows"></div></div></div>
+        </section>
+        <section id="inspector" aria-label="Step details"></section>
+      </div>
+    </div>
+  </main>
+  <div id="tooltip" hidden></div>
+</div>
+<script src="app.js" defer></script>
+</body>
+</html>
